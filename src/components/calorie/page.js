@@ -14,12 +14,15 @@ const Calorie = () => {
 
     // Placeholder functions for the buttons, replace with actual logic
     const calculateFunction = () => {
-        // Your calculation logic here
+        onchange(
+            
+        )
     };
 
     const clearFunction = () => {
         // Your clear logic here
     };
+
 
     return (
         <>
