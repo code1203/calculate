@@ -1,75 +1,160 @@
 // Modal.js
-import React from "react";
+"use client";
+import React, { useState } from "react";
 
-const Modal = ({ closeModal }) => {
+const Modal = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [selectedActivity, setSelectedActivity] = useState("Select Activity");
+
   const handleButtonClick = () => {
-    console.log("Button clicked");
+    setModalOpen(true);
   };
 
-  const handleCloseButtonClick = () => {
-    closeModal();
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleActivitySelect = (activity) => {
+    setSelectedActivity(activity);
+    setDropdownOpen(false);
   };
 
   return (
-    <div className="overflow-y-auto">
-      <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <div className="fixed inset-0 transition-opacity" aria-hidden="true">
-          <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-        </div>
+    <div>
+      <button
+        onClick={handleButtonClick}
+        className="mt-20 ml-20 text-neutral-400 text-4xl font-normal bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+      >
+        Open Modal
+      </button>
 
-        <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
-          &#8203;
-        </span>
+      {isModalOpen && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-md shadow-md w-96">
+            <div className="flex items-center justify-between mb-6">
+              <div className="text-green-700 text-sm font-semibold font-inter">
+                Fill in the details to calculate your calories
+              </div>
+              <div
+                className="ml-6 text-blue-500 text-xs font-normal font-inter cursor-pointer"
+                onClick={closeModal}
+              >
+                Skip
+              </div>
+            </div>
 
-        <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle min-w-[300px] min-h-[300px]">
-        <div className="flex flex-col items-center justify-center min-h-screen">
-      <div className="flex justify-center">
-        <h1 className="text-2xl text-black mt-20 font-bold">Your nutritional information</h1>
-      </div>
-      <div className="mx-auto mt-7 flex justify-center w-[1110px] h-[120px] relative bg-white rounded-[20px]">
-        <h1 className="my-auto text-black text-3xl">Recommended calories per day</h1>
-        <h1 className="my-auto ml-7 text-orange-400 text-3xl">1365 cal</h1>
-      </div>
-      <p className="ml-7 mt-2 text-black text-left">*Weight loss is calculated based on your EER (average energy expenditure that your body uses every day) of 20% (your EER is 1706, 20% = 1365).
-        Proportions for weight loss nutrients protein: fat 40:30:30
-      </p>
-      <div className="mx-auto mt-7 w-[1110px] h-[88px] pl-[276px] pr-[275px] py-[22px] bg-[#587F61] rounded-tl-[20px] rounded-tr-[20px] flex justify-center items-center">
-        <div className="text-white text-3xl font-normal font-['Inter']">Use this information to calculate.</div>
-      </div>
-      <div className="mx-auto w-[1110px] h-[88px] pl-[59px] pr-[670px] py-[22px] bg-zinc-100 border-t border-neutral-500 justify-center items-start gap-[268px] inline-flex">
-        <div className="text-black text-2xl font-normal font-['Inter']">Age</div>
-        <div className="ml-4 text-black text-2xl font-normal font-['Inter']">20</div>
-      </div>
-      <div className="w-[1110px] h-[88px] pl-[59px] pr-[593px] py-[22px] bg-zinc-100 border-t border-neutral-500 justify-start items-start gap-[210px] inline-flex">
-        <div className="text-black text-2xl font-normal font-['Inter']">Gender</div>
-        <div className="text-black text-2xl font-normal font-['Inter']">Female</div>
-      </div>
-      <div className="w-[1110px] h-[88px] pl-[59px] pr-[653px] py-[22px] bg-zinc-100 border-t border-neutral-500 justify-start items-start gap-[223px] inline-flex">
-        <div className="text-black text-2xl font-normal font-['Inter']">Height</div>
-        <div className="text-black text-2xl font-normal font-['Inter']">160</div>
-      </div>
-      <div className="w-[1110px] h-[88px] pl-[59px] pr-[670px] py-[22px] bg-zinc-100 border-t border-neutral-500 justify-start items-start gap-[217px] inline-flex">
-        <div className="text-black text-2xl font-normal font-['Inter']">Weight</div>
-        <div className="text-black text-2xl font-normal font-['Inter']">58</div>
-      </div>
-      <div className="w-[1110px] h-[88px] pl-[59px] pr-[186px] py-[22px] bg-zinc-100 border-t border-neutral-500 justify-start items-start gap-52 inline-flex">
-        <div className="text-black text-2xl font-normal font-['Inter']">Activity</div>
-        <div className="text-black text-2xl font-normal font-['Inter']">Sedentary : little or no exercise</div>
-      </div>
-      <div className="mt-7 inline-flex">
-        <div className="text-black text-2xl font-normal font-['Inter']">To edit information to recalculate, </div>
-        <div className="text-[#587F61] text-2xl font-semibold font-['Inter']">click here.</div>
-      </div>
-      <div className={`flex w-20 justify-center rounded-md mx-auto my-2 px-2 py-3 text-md font-semibold shadow-sm bg-[#587F61] text-white hover:bg-[#4a6b52]' : 'bg-gray-300 text-gray-500 cursor-not-allowed`}>
-        <button onClick={handleCloseButtonClick} className="text-white">
-          close
-        </button>
-      </div>
-    </div>
+            <FormInput label="Age" placeholder="Enter your age" extraText="Ages 15-80" />
+            <div className="inline-flex items-start justify-center mb-4">
+              <div>
+                <h1 className="text-green-700 text-sm py-2">Gender</h1>
+              </div>
+              <div className="inline-flex ml-4">
+                <RadioInput id="male" name="gender" value="male" label="Male" />
+                <RadioInput id="female" name="gender" value="female" label="Female" />
+              </div>
+            </div>
+
+            <FormInput label="Height" placeholder="Enter your height" />
+            <FormInput label="Weight" placeholder="Enter your weight" />
+            <div>
+            <div className="inline-flex flex justify-center">
+              <div>
+                <h1 className="text-green-700 py-4">Frequency</h1>
+              </div>
+              <Dropdown
+              selectedActivity={selectedActivity}
+              toggleDropdown={toggleDropdown}
+              isDropdownOpen={isDropdownOpen}
+              handleActivitySelect={handleActivitySelect}
+            />
+            </div>
+            
+            </div>
+            <div className="flex w-11/12 justify-center items-center mx-auto mt-6">
+              <button
+                onClick={closeModal}
+                className="bg-green-700 py-2 px-6 text-md font-semibold text-white rounded-md shadow-sm hover:bg-[#4a6b52] focus:outline-none focus:ring focus:border-blue-300"
+              >
+                Close
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
+
+const FormInput = ({ label, placeholder, extraText }) => (
+  <div className="inline-flex items-start justify-center mb-4">
+    <div>
+      <h1 className="text-green-700 text-sm py-2">{label}</h1>
+    </div>
+    <div className="inline-flex ml-4">
+      <input
+        type="number"
+        className="ml-2 bg-gray-100 text-green-700 text-center rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
+        placeholder={placeholder}
+      />
+      {extraText && <p className="ml-2 text-green-700 text-xs">{extraText}</p>}
+    </div>
+  </div>
+);
+
+const RadioInput = ({ id, name, value, label }) => (
+  <div>
+    <input
+      type="radio"
+      id={id}
+      name={name}
+      value={value}
+      className="radio visually-hidden"
+    />
+    <label htmlFor={id} className="radio-label mr-7">{label}</label>
+  </div>
+);
+
+const Dropdown = ({ selectedActivity, toggleDropdown, isDropdownOpen, handleActivitySelect }) => (
+  <div className="dropdown mx-6 relative">
+    <div
+      tabIndex={0}
+      role="button"
+      className="btn m-1 bg-[#cbd7ce] overflow-hidden"
+      onClick={toggleDropdown}
+    >
+      {selectedActivity}
+    </div>
+    <ul
+      tabIndex={0}
+      className={`dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52 absolute ${
+        isDropdownOpen ? "" : "hidden"
+      }`}
+    >
+      <li onClick={() => handleActivitySelect("Sedentary")}>
+        <a>Sedentary: little or no exercise</a>
+      </li>
+      <li onClick={() => handleActivitySelect("Light")}>
+        <a>Light: exercise 1-3 times/week</a>
+      </li>
+      <li onClick={() => handleActivitySelect("Moderate")}>
+        <a>Moderate : exercise 4-5 times/week</a>
+      </li>
+      <li onClick={() => handleActivitySelect("Active")}>
+        <a>Active : daily exercise or intencse exercise 3-4 times/week</a>
+      </li>
+      <li onClick={() => handleActivitySelect("Very Active")}>
+        <a>Very Active : intencse exercise 6-7 times/week</a>
+      </li>
+      <li onClick={() => handleActivitySelect("Extra Active")}>
+        <a>Extra Active : very intencse exercise daily, or physical job</a>
+      </li>
+    </ul>
+  </div>
+);
 
 export default Modal;

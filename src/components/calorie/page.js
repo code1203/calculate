@@ -7,7 +7,7 @@ const Calorie = () => {
     const openModal = () => {
         setIsModalOpen(true);
     };
-
+    
     const closeModal = () => {
         setIsModalOpen(false);
     };
@@ -15,7 +15,7 @@ const Calorie = () => {
     // Placeholder functions for the buttons, replace with actual logic
     const calculateFunction = () => {
         onchange(
-            
+              
         )
     };
 
