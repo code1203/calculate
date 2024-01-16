@@ -26,45 +26,54 @@ const Calculate = () => {
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <div className="bg-white p-8 rounded-md shadow-md w-[500px] m-4 overflow-hidden">
             <div className="flex flex-col items-center justify-center space-y-4">
-              <div className="mb-6 font-semibold text-black text-lg">Your Nutritional Information</div>
+              <div className="mb-6 font-semibold text-black text-lg">ข้อมูลโภชนาการของคุณ</div>
 
               <div className="flex justify-center items-center mb-4">
-                <div className="text-black">Recommended Calories per Day:</div>
+                <div className="text-black">แคลอรีที่แนะนำต่อวัน:</div>
                 <div className="ml-2 text-[#FFB55F]">1365 cal</div>
               </div>
 
               <div className="bg-[#8FA995] h-12 w-96 rounded-tl-[20px] rounded-tr-[20px] flex items-center justify-center mb-4">
                 <div className="text-white text-center text-md">
-                  Use this information to calculate.
+                ใช้ข้อมูลนี้ในการคำนวณ
                 </div>
               </div>
 
-              <div className="text-black text-md">
+              <div className="text-black text-md text-left">
                 <div className="flex justify-between mb-2 ">
-                  <div className="text-left">Age</div>
+                  <div className="text-left">อายุ</div>
                   <div className="text-right">20</div>
                 </div>
+                <hr className="border-b-2 border-gray-300 mb-2" />
 
                 <div className="flex justify-between mb-2">
-                  <div className="text-left">Gender</div>
-                  <div className="text-right">Female</div>
+                  <div className="text-left">เพศ</div>
+                  <div className="text-right">ผู้หญิง</div>
                 </div>
+                <hr className="border-b-2 border-gray-300 mb-2" />
 
                 <div className="flex justify-between mb-2">
-                  <div className="text-left">Height</div>
+                  <div className="text-left">ความสูง</div>
                   <div className="text-right">160 cm</div>
                 </div>
+                <hr className="border-b-2 border-gray-300 mb-2" />
 
                 <div className="flex justify-between mb-2">
-                  <div className="text-left">Weight</div>
+                  <div className="text-left">น้ำหนัก</div>
                   <div className="text-right">58 kg</div>
                 </div>
+                <hr className="border-b-2 border-gray-300 mb-2" />
 
                 <div className="flex justify-between">
-                  <div className="text-md text-left">Activity</div>
-                  <div className="text-md text-right ml-56">Sedentary</div>
+                  <div className="text-md text-left">ความถี่</div>
+                  <div className="text-md text-right ml-7">ออกกำลังกายน้อย</div>
                 </div>
               </div>
+
+            <div className="inline-flex ">
+              <p className="text-black">การแก้ไขข้อมูลเพื่อคำนวณใหม่</p>
+              <p className="ml-2 text-[#3E5A45]">คลิ๊กที่นี่</p>
+            </div>
 
             </div>
 
@@ -73,7 +82,7 @@ const Calculate = () => {
                 onClick={closeModal}
                 className="bg-[#587F61] px-4 py-2 text-md font-semibold text-white rounded-md shadow-sm hover:bg-[#4a6b52]"
               >
-                Close
+                กลับไปหน้าหลัก
               </button>
             </div>
           </div>

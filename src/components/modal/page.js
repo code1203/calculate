@@ -2,110 +2,6 @@
 "use client";
 import React, { useState } from "react";
 
-const Modal = () => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [isDropdownOpen, setDropdownOpen] = useState(false);
-  const [selectedActivity, setSelectedActivity] = useState("Select Activity");
-
-  const handleButtonClick = () => {
-    setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!isDropdownOpen);
-  };
-
-  const handleActivitySelect = (activity) => {
-    setSelectedActivity(activity);
-    setDropdownOpen(false);
-  };
-
-  return (
-    <div>
-      <button
-        onClick={handleButtonClick}
-        className="mt-20 ml-20 text-neutral-400 text-4xl font-normal bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-      >
-        Open Modal
-      </button>
-
-      {isModalOpen && (
-        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-          <div className="bg-white p-8 rounded-md shadow-md w-96">
-            <div className="flex items-center justify-between mb-6">
-              <div className="text-green-700 text-sm font-semibold font-inter">
-                Fill in the details to calculate your calories
-              </div>
-              <div
-                className="ml-6 text-blue-500 text-xs font-normal font-inter cursor-pointer"
-                onClick={closeModal}
-              >
-                Skip
-              </div>
-            </div>
-
-            <FormInput label="Age" placeholder="Enter your age" extraText="Ages 15-80" />
-            <div className="inline-flex items-start justify-center mb-4">
-              <div>
-                <h1 className="text-green-700 text-sm py-2">Gender</h1>
-              </div>
-              <div className="inline-flex ml-4">
-                <RadioInput id="male" name="gender" value="male" label="Male" />
-                <RadioInput id="female" name="gender" value="female" label="Female" />
-              </div>
-            </div>
-
-            <FormInput label="Height" placeholder="Enter your height" />
-            <FormInput label="Weight" placeholder="Enter your weight" />
-            <div>
-            <div className="inline-flex flex justify-center">
-              <div>
-                <h1 className="text-green-700 py-4">Frequency</h1>
-              </div>
-              <Dropdown
-              selectedActivity={selectedActivity}
-              toggleDropdown={toggleDropdown}
-              isDropdownOpen={isDropdownOpen}
-              handleActivitySelect={handleActivitySelect}
-            />
-            </div>
-            
-            </div>
-            <div className="flex w-11/12 justify-center items-center mx-auto mt-6">
-              <button
-                onClick={closeModal}
-                className="bg-green-700 py-2 px-6 text-md font-semibold text-white rounded-md shadow-sm hover:bg-[#4a6b52] focus:outline-none focus:ring focus:border-blue-300"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const FormInput = ({ label, placeholder, extraText }) => (
-  <div className="inline-flex items-start justify-center mb-4">
-    <div>
-      <h1 className="text-green-700 text-sm py-2">{label}</h1>
-    </div>
-    <div className="inline-flex ml-4">
-      <input
-        type="number"
-        className="ml-2 bg-gray-100 text-green-700 text-center rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
-        placeholder={placeholder}
-      />
-      {extraText && <p className="ml-2 text-green-700 text-xs">{extraText}</p>}
-    </div>
-  </div>
-);
-
 const RadioInput = ({ id, name, value, label }) => (
   <div>
     <input
@@ -131,30 +27,163 @@ const Dropdown = ({ selectedActivity, toggleDropdown, isDropdownOpen, handleActi
     </div>
     <ul
       tabIndex={0}
-      className={`dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52 absolute ${
-        isDropdownOpen ? "" : "hidden"
-      }`}
+      className={`dropdown-content z-[1] menu p-2 shadow bg-white rounded-box w-52 absolute ${isDropdownOpen ? "" : "hidden"
+        }`}
     >
-      <li onClick={() => handleActivitySelect("Sedentary")}>
-        <a>Sedentary: little or no exercise</a>
+      <li onClick={() => handleActivitySelect("ออกกำลังกายน้อย")}>
+        <a>ออกกำลังกายน้อยหรือไม่มีเลย</a>
       </li>
-      <li onClick={() => handleActivitySelect("Light")}>
-        <a>Light: exercise 1-3 times/week</a>
+      <li onClick={() => handleActivitySelect("1-3 ครั้ง/สัปดาห์")}>
+        <a>ออกกำลังกาย 1-3 ครั้ง/สัปดาห์</a>
       </li>
-      <li onClick={() => handleActivitySelect("Moderate")}>
-        <a>Moderate : exercise 4-5 times/week</a>
+      <li onClick={() => handleActivitySelect("4-5 ครั้ง/สัปดาห์")}>
+        <a>ออกกำลังกาย 4-5 ครั้ง/สัปดาห์</a>
       </li>
-      <li onClick={() => handleActivitySelect("Active")}>
-        <a>Active : daily exercise or intencse exercise 3-4 times/week</a>
+      <li onClick={() => handleActivitySelect("ออกกำลังกายเป็นประจำทุกวัน")}>
+        <a>ออกกำลังกายเป็นประจำทุกวันหรือออกกำลังกายแบบเข้มข้น 3-4 ครั้ง/สัปดาห์</a>
       </li>
-      <li onClick={() => handleActivitySelect("Very Active")}>
-        <a>Very Active : intencse exercise 6-7 times/week</a>
+      <li onClick={() => handleActivitySelect("ออกกำลังกายแบบเข้มข้น")}>
+        <a>ออกกำลังกายแบบเข้มข้น 6-7 ครั้ง/สัปดาห์</a>
       </li>
-      <li onClick={() => handleActivitySelect("Extra Active")}>
-        <a>Extra Active : very intencse exercise daily, or physical job</a>
+      <li onClick={() => handleActivitySelect("การออกกำลังกายที่เข้มข้นมากทุกวัน")}>
+        <a>การออกกำลังกายที่เข้มข้นมากทุกวันหรือการทำงานทางกายภาพ</a>
       </li>
     </ul>
   </div>
 );
+
+const Modal = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [isDropdownOpen, setDropdownOpen] = useState(false);
+  const [selectedActivity, setSelectedActivity] = useState("กรุณาเลือกความถี่");
+
+  const handleButtonClick = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
+  const toggleDropdown = () => {
+    setDropdownOpen(!isDropdownOpen);
+  };
+
+  const handleActivitySelect = (activity) => {
+    setSelectedActivity(activity);
+    setDropdownOpen(false);
+  };
+
+  return (
+    <>
+      <button
+        onClick={handleButtonClick}
+        className="mt-20 ml-20 text-neutral-400 text-4xl font-normal bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+      >
+        Open Modal
+      </button>
+
+      {isModalOpen && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-8 rounded-md shadow-md w-4/12">
+            <div className="flex items-center justify-between mb-6">
+              <div className="mx-auto text-green-700 text-sm font-semibold font-inter">
+                กรอกรายละเอียดเพื่อคำนวณแคลอรี่ของคุณ
+              </div>
+              <div
+                className="ml-6 text-blue-500 text-xs font-normal font-inter cursor-pointer"
+                onClick={closeModal}
+              >
+                ข้าม
+              </div>
+            </div>
+
+            {/* Age Input */}
+            <div className="inline-flex items-start justify-center mb-4">
+              <div>
+                <label htmlFor="age" className="text-green-700 text-lg py-2">อายุ</label>
+              </div>
+              <div className="inline-flex ml-4">
+                <input
+                  type="text"
+                  id="age"
+                  className="ml-20 bg-gray-100 text-green-700 text-center rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
+                  placeholder="Enter your age"
+                />
+                <p className="ml-7 text-green-700 text-lg py-2">อายุ 15-80</p>
+              </div>
+            </div>
+
+            {/* Gender Radio Inputs */}
+            <div className="inline-flex items-start justify-center mb-4">
+              <div>
+                <label className="text-green-700 text-lg py-2">เพศ</label>
+              </div>
+              <div className="inline-flex ml-28  text-lg">
+                <RadioInput id="male" name="gender" value="male" label="ชาย" />
+                <RadioInput id="female" name="gender" value="female" label="หญิง" />
+              </div>
+            </div>
+
+            {/* Height Input */}
+            <div className="inline-flex items-start justify-center mb-4">
+              <div>
+                <label htmlFor="height" className="text-green-700 text-lg py-2">ความสูง</label>
+              </div>
+              <div className="inline-flex ml-4">
+                <input
+                  type="text"
+                  id="height"
+                  className="ml-12 bg-gray-100 text-green-700 text-center rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
+                  placeholder="กรุณากรอกความสูง"
+                />
+              </div>
+            </div>
+
+            {/* Weight Input */}
+            <div className="inline-flex items-start justify-center mb-4">
+              <div>
+                <label htmlFor="weight" className="text-green-700 text-lg py-2">น้ำหนัก</label>
+              </div>
+              <div className="inline-flex ml-4">
+                <input
+                  type="text"
+                  id="weight"
+                  className="ml-14 bg-gray-100 text-green-700 text-center rounded-md py-2 px-4 focus:outline-none focus:ring focus:border-blue-300"
+                  placeholder="กรุณากรอกน้ำหนัก"
+                />
+              </div>
+            </div>
+
+            {/* Frequency Dropdown */}
+            <div className="inline-flex flex justify-center">
+              <div className="text-center">
+                <label className="text-green-700 text-lg">ความถี่</label>
+              </div>
+              <div className="ml-12 text-center">
+                <Dropdown
+                  selectedActivity={selectedActivity}
+                  toggleDropdown={toggleDropdown}
+                  isDropdownOpen={isDropdownOpen}
+                  handleActivitySelect={handleActivitySelect}
+                />
+              </div>
+            </div>
+
+            {/* Save Button */}
+            <div className="flex w-11/12 justify-center items-center mx-auto mt-6">
+              <button
+                onClick={closeModal}
+                className="bg-green-700 py-2 px-6 text-md font-semibold text-white rounded-md shadow-sm hover:bg-[#4a6b52] focus:outline-none focus:ring focus:border-blue-300"
+              >
+                บันทึก
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
 
 export default Modal;
