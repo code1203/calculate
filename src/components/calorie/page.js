@@ -36,7 +36,7 @@ const Calorie = () => {
                         <div onClick={closeModal} className="cursor-pointer text-[#8FA995] text-4xl font-normal">
                             ปิด
                         </div>
-                        <div className="w-[859px] text-[#587F61] text-xl text-center font-normal">
+                        <div className="w-[859px] text-[#F00000] text-xl text-center font-normal">
                             ถ้าไม่กรอกข้อมูลในทั้งสามช่อง ปริมาณการบริโภคแคลอรี่ต่อวันจะถูกตั้งค่าเริ่มต้นที่ 1200
                         </div>
                         <div className="flex-col justify-start items-center gap-[45px] flex text-center">
